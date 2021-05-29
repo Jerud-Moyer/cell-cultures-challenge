@@ -1,3 +1,6 @@
-const data = require('./data.js');
+const readData = require('./data.js');
 
-console.log(data());
+const data = readData();
+ 
+
+console.log(data);
