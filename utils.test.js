@@ -1,4 +1,4 @@
-const { isStable, isOvercrowded, growCulture } = require('./utils');
+const { isStable, adjacentGrowths, growCulture, regrow, dieBack } = require('./utils');
 
 describe('growCulture', () => {
   it('should take an array and find the livable areas and return with growths', () => {
@@ -26,17 +26,54 @@ describe('isStable', () => {
 
 });
 
-describe('isOvercrowded', () => {
-  it('should return true if 4 or more adjacent blocks have growth', () => {
-    const data = [['.', '#', '.'], ['#', '#', '#'], ['#', '.', '.']];
+describe('adjacentGrowths', () => {
+  it('should return number of adjacent growths', () => {
+    const data = [
+      ['.', '#', '.'], 
+      ['#', '#', '#'], 
+      ['#', '.', '.']];
     
-    expect(isOvercrowded(data, 1, 1)).toEqual(true);
+    expect(adjacentGrowths(data, 1, 1)).toEqual(4);
   });
 
-  it('should return false if 4 or more adjacent blocks have growth', () => {
+  it('should return number of adjacent growths', () => {
     const data = [['.', '#', '.'], ['.', '#', '.'], ['#', '.', '.']];
     
-    expect(isOvercrowded(data, 0, 1)).toEqual(false);
+    expect(adjacentGrowths(data, 0, 1)).toEqual(1);
   });
 
+});
+
+describe('dieBack', () => {
+  it('should turn live cultures back to empty livable patches when 4 or more adjacent growths are present', () => {
+    const initialGrowth = [
+      ['#', '.', '#', '#', '#'],
+      ['#', '.', '.', '#', '#'],
+      ['#', '.', '#', '#', '.']
+    ];
+    const afterDieBack = [
+      ['#', '.', '#', 'L', '#'],
+      ['#', '.', '.', 'L', 'L'],
+      ['#', '.', '#', '#', '.']
+    ];
+    console.log('test', dieBack(initialGrowth))
+    expect(dieBack(initialGrowth)).toEqual(afterDieBack);
+  });
+});
+
+describe('reGrowth', () => {
+  it('should regrow #s where no adjacent #s exist', () => {
+    const afterDieBack = [
+      ['.', '#', 'L', 'L', 'L', '#'], 
+      ['.', '#', 'L', 'L', 'L', '#'], 
+      ['.', '#', 'L', 'L', 'L', '#']
+    ];
+    const regrown = [
+      ['.', '#', 'L', '#', 'L', '#'], 
+      ['.', '#', 'L', '#', 'L', '#'], 
+      ['.', '#', 'L', '#', 'L', '#']
+    ];
+    
+    expect(regrow(afterDieBack)).toEqual(regrown);
+  });
 });

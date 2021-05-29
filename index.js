@@ -1,6 +1,10 @@
 const readData = require('./data.js');
+const { growCulture } = require('./utils.js');
 
 const data = readData();
- 
 
-console.log(data);
+const grownCultureSlide = data.map(col => growCulture(col));
+
+
+
+console.log(grownCultureSlide);
