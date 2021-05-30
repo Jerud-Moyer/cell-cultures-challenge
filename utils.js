@@ -107,11 +107,11 @@ const livableCount = (grid) => {
   grid.forEach(col => {
     col.forEach(row => {
       if(row === 'L') {
-        livable = (livable + 1);
+        livable ++;
       }
       if(row === '#') {
-        growths = (growths + 1);
-        livable = (livable + 1);
+        growths ++;
+        livable ++;
       }
     });
   });

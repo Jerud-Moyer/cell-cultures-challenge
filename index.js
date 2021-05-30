@@ -39,5 +39,5 @@ const { lifeCycles, livable, growths } =
 const growthPercentage = ((growths / livable) * 100).toFixed(3);
 
 console.log(
-  `This game of life took place over just ${lifeCycles} hours yeilding ${growths} living cell cultures, while leaving ${livable} livable areas. Cultures grew with a ${growthPercentage}% success rate.`
+  `This game of life took place over just ${lifeCycles} hours, yeilding ${growths} living cell cultures, while leaving ${livable} livable areas. Cultures grew with a ${growthPercentage}% success rate.`
 );
