@@ -33,8 +33,16 @@ describe('isStable', () => {
   });
 
   it('should return false if arrays dont match', () => {
-    const data = [['apple', 'monkey', 'pear'], ['dog', 'cat', 'pig'], ['floor', 'ceiling', 'wall']];
-    const newData = [['apple', 'orange', 'pear'], ['dog', 'cat', 'pig'], ['floor', 'ceiling', 'wall']];
+    const data = [
+      ['apple', 'monkey', 'pear'], 
+      ['dog', 'cat', 'pig'], 
+      ['floor', 'ceiling', 'wall']
+    ];
+    const newData = [
+      ['apple', 'orange', 'pear'], 
+      ['dog', 'cat', 'pig'], 
+      ['floor', 'ceiling', 'wall']
+    ];
 
     expect(isStable(data, newData)).toEqual(false);
   });
@@ -100,7 +108,7 @@ describe('reGrowth', () => {
 
 
 describe('livableCount', () => {
-  it('should take a grid and return number of total livable areas', () => {
+  it('should take a grid and return number of growths and total livable areas', () => {
     const grid = [
       ['#', '.', '#', 'L'],
       ['L', 'L', '.', 'L'],
