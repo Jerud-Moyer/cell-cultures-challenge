@@ -92,7 +92,6 @@ const regrow = (grid) => {
 
 //compare last outcome with next outcome to stop recursion
 const isStable = (data, newData) => {
-
   return data.every((row, rowIndex) => {
     return row.every((col, colIndex) => {
       return col === newData[rowIndex][colIndex];
@@ -101,6 +100,24 @@ const isStable = (data, newData) => {
 };
 
 
+//count total final growths and livable fields
+const livableCount = (grid) => {
+  let livable = 0;
+  let growths = 0;
+  grid.forEach(col => {
+    col.forEach(row => {
+      if(row === 'L') {
+        livable = (livable + 1);
+      }
+      if(row === '#') {
+        growths = (growths + 1);
+        livable = (livable + 1);
+      }
+    });
+  });
+  return { livable, growths };
+};
+
 
 module.exports = {
   dieBack,
@@ -108,5 +125,6 @@ module.exports = {
   growCulture,
   adjacentGrowths,
   isViable,
-  isStable
+  isStable,
+  livableCount
 };

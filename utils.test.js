@@ -1,4 +1,11 @@
-const { isStable, adjacentGrowths, growCulture, regrow, dieBack } = require('./utils');
+const { 
+  isStable, 
+  adjacentGrowths, 
+  growCulture, 
+  regrow, 
+  dieBack,  
+  livableCount 
+} = require('./utils');
 
 describe('growCulture', () => {
   it('should take an array and find the livable areas and return with growths', () => {
@@ -11,8 +18,16 @@ describe('growCulture', () => {
 
 describe('isStable', () => {
   it('should return true if arrays match', () => {
-    const data = [['apple', 'orange', 'pear'], ['dog', 'cat', 'pig'], ['floor', 'ceiling', 'wall']];
-    const newData = [['apple', 'orange', 'pear'], ['dog', 'cat', 'pig'], ['floor', 'ceiling', 'wall']];
+    const data = [
+      ['apple', 'orange', 'pear'], 
+      ['dog', 'cat', 'pig'], 
+      ['floor', 'ceiling', 'wall']
+    ];
+    const newData = [
+      ['apple', 'orange', 'pear'], 
+      ['dog', 'cat', 'pig'], 
+      ['floor', 'ceiling', 'wall']
+    ];
 
     expect(isStable(data, newData)).toEqual(true);
   });
@@ -31,13 +46,18 @@ describe('adjacentGrowths', () => {
     const data = [
       ['.', '#', '.'], 
       ['#', '#', '#'], 
-      ['#', '.', '.']];
+      ['#', '.', '.']
+    ];
     
     expect(adjacentGrowths(data, 1, 1)).toEqual(4);
   });
 
   it('should return number of adjacent growths', () => {
-    const data = [['.', '#', '.'], ['.', '#', '.'], ['#', '.', '.']];
+    const data = [
+      ['.', '#', '.'], 
+      ['.', '#', '.'], 
+      ['#', '.', '.']
+    ];
     
     expect(adjacentGrowths(data, 0, 1)).toEqual(1);
   });
@@ -56,7 +76,7 @@ describe('dieBack', () => {
       ['#', '.', '.', 'L', 'L'],
       ['#', '.', '#', '#', '.']
     ];
-    console.log('test', dieBack(initialGrowth))
+    
     expect(dieBack(initialGrowth)).toEqual(afterDieBack);
   });
 });
@@ -75,5 +95,23 @@ describe('reGrowth', () => {
     ];
     
     expect(regrow(afterDieBack)).toEqual(regrown);
+  });
+});
+
+
+describe('livableCount', () => {
+  it('should take a grid and return number of total livable areas', () => {
+    const grid = [
+      ['#', '.', '#', 'L'],
+      ['L', 'L', '.', 'L'],
+      ['#', '.', 'L', '#']
+    ];
+
+    expect(livableCount(grid)).toEqual(
+      {
+        livable: 9,
+        growths: 4
+      }
+    );
   });
 });
