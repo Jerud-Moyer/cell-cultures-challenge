@@ -13,7 +13,7 @@ const grownCultureSlide = data.map(
   col => growCulture(col));
 
 const gameOfLife = (grid) => {
-  let lifeCycles = 0;
+  let lifeCycles = 1;
   let gridData = grid;
   let historyGrid = [['#']];
   let newData = [['']];
