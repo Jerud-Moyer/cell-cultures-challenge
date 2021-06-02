@@ -15,10 +15,10 @@ const grownCultureSlide = data.map(
 const gameOfLife = (grid) => {
   let lifeCycles = 1;
   let gridData = grid;
-  let historyGrid = [['#']];
-  let newData = [['']];
+  let historyGrid = [];
+  let newData = [];
 
-  while(!isStable(historyGrid, newData)) {
+  do{
     const dieBackData = dieBack(gridData);
     const reGrowData = regrow(dieBackData);
     historyGrid = gridData;
@@ -27,7 +27,7 @@ const gameOfLife = (grid) => {
     {lifeCycles = (lifeCycles + 2);}
     console.log(lifeCycles);
     
-  }
+  } while(!isStable(historyGrid, newData));
 
   const { livable, growths } = livableCount(newData);
   
