@@ -24,8 +24,9 @@ const gameOfLife = (grid) => {
     historyGrid = gridData;
     gridData = reGrowData;
     newData = reGrowData;
-    {lifeCycles ++;}
+    {lifeCycles = (lifeCycles + 2);}
     console.log(lifeCycles);
+    
   }
 
   const { livable, growths } = livableCount(newData);
